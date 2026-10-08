@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: classement-pfe-automatique
+    env: node
+    plan: free
+    buildCommand: ""
+    startCommand: node server.js
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: ADMIN_PASSWORD
+        sync: false
