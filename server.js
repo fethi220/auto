@@ -375,15 +375,27 @@ const server = http.createServer(async (req, res) => {
       return res.end(csv);
     }
 
-    // Serve Static Frontend files
-    let staticFilePath = path.join(__dirname, 'public', pathname === '/' ? 'index.html' : pathname);
-    if (fs.existsSync(staticFilePath) && fs.statSync(staticFilePath).isFile()) {
-      return serveStatic(req, res, staticFilePath);
+    // Serve Static Frontend files (supports both public/ and root directory)
+    const cleanPath = pathname === '/' ? 'index.html' : pathname.replace(/^\/+/, '');
+    const possiblePaths = [
+      path.join(__dirname, 'public', cleanPath),
+      path.join(__dirname, cleanPath),
+      path.join(__dirname, 'public', path.basename(cleanPath)),
+      path.join(__dirname, path.basename(cleanPath))
+    ];
+
+    for (const testPath of possiblePaths) {
+      if (fs.existsSync(testPath) && fs.statSync(testPath).isFile()) {
+        return serveStatic(req, res, testPath);
+      }
     }
 
-    // Fallback to index.html for root
+    // Fallback to index.html for root if not caught
     if (pathname === '/') {
-      return serveStatic(req, res, path.join(__dirname, 'public', 'index.html'));
+      const fallbackPublic = path.join(__dirname, 'public', 'index.html');
+      if (fs.existsSync(fallbackPublic)) return serveStatic(req, res, fallbackPublic);
+      const fallbackRoot = path.join(__dirname, 'index.html');
+      if (fs.existsSync(fallbackRoot)) return serveStatic(req, res, fallbackRoot);
     }
 
     return sendJSON(res, 404, { success: false, message: 'الصفحة غير موجودة.' });

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Classement PFE – 3ème année Automatique | ESG2E Oran</title>
+  <!-- Google Fonts: Cairo (Arabic) & Inter (Numbers & French terms) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <div class="brand">
+        <img src="logo.png" alt="Logo ESG2E Oran" class="brand-logo" onerror="this.style.display='none'">
+        <div class="brand-text">
+          <span class="brand-school">المدرسة العليا في الهندسة الكهربائية والطاقوية – وهران</span>
+          <span class="brand-sub">ESG2E ORAN • 3ème année Automatique</span>
+        </div>
+      </div>
+      <div class="nav-actions">
+        <div class="badge-roster" id="rosterBadge" title="نسبة تسجيل طلبة الفوج">
+          <span class="pulse-dot"></span>
+          <span id="studentCountBadge">0 / 30 طالباً مسجلاً</span>
+        </div>
+        <button id="btnOpenAdmin" class="btn btn-outline-admin">
+          🔐 Espace Admin
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    
+    <!-- Hero / Welcome & Context Section -->
+    <section class="hero-card">
+      <div class="hero-top-badge">
+        <span class="tag-badge">🎓 منصة طلابية موحدة</span>
+        <span class="tag-badge-sub">3ème année Automatique – Promotion 2025/2026</span>
+      </div>
+
+      <h1 class="hero-main-title">
+        Classement PFE – 3ème année Automatique
+      </h1>
+      <h2 class="hero-school-name">
+        المدرسة العليا في الهندسة الكهربائية والطاقوية – وهران (ESG2E ORAN)
+      </h2>
+
+      <!-- Friendly Human Arabic Introduction -->
+      <div class="intro-message-box">
+        <p class="intro-paragraph">
+          <strong>طلبتنا وأصدقاءنا الأعزاء،</strong><br>
+          نعلم أن من بين المشاكل التي تواجه الطلبة قبل اختيار مواضيع مشاريع نهاية الدراسة (PFE) هي عدم معرفة ترتيب كل طالب، وهذا الأمر قد يسبب بعض القلق والحيرة، خاصة وأن اختيار المواضيع يتم حسب الترتيب.
+        </p>
+        <p class="intro-paragraph">
+          لهذا قمنا بإنشاء هذا الموقع لمساعدتكم على معرفة ترتيبكم بسهولة وشفافية، وذلك من خلال إدخال معلوماتكم والمساهمة في إنشاء ترتيب موحد للمجموعة.
+        </p>
+        <p class="intro-highlight">
+          ✨ الهدف من هذا الموقع هو فقط تسهيل معرفة الترتيب وتجنب القلق أو التخمين قبل مرحلة اختيار مواضيع الـ PFE.
+        </p>
+      </div>
+
+      <!-- Privacy Assurance Box -->
+      <div class="privacy-card">
+        <div class="privacy-header">
+          <span class="privacy-shield-icon">🔒</span>
+          <h3 class="privacy-title">ملاحظة مهمة ومطمئنة حول الخصوصية</h3>
+        </div>
+        <p class="privacy-text">
+          اطمئن، <strong>لن يستطيع أي طالب الاطلاع على معدلك</strong>. المعدل الذي تدخله يُستخدم فقط لحساب الترتيب، ولن يظهر أبداً في الجدول العام.
+        </p>
+        <p class="privacy-subtext">
+          المعدل محفوظ بشكل خاص ومحمٍ، ولا يمكن الاطلاع عليه إلا من طرف الـ <strong>Admin</strong> المسؤول عن الموقع.<br>
+          هدفنا هو توفير ترتيب شفاف وعادل مع الحفاظ الكامل على خصوصية كل طالب.
+        </p>
+      </div>
+    </section>
+
+    <!-- Main Content Grid -->
+    <div class="content-grid">
+      
+      <!-- Right Column: Registration Form -->
+      <section class="card form-card">
+        <div class="card-header">
+          <div class="card-header-icon">📝</div>
+          <div>
+            <h2 class="card-title">إدخال المعلومات وحساب الرتبة</h2>
+            <p class="card-subtitle">خاص بطلبة السنة الثالثة تخصص Automatique</p>
+          </div>
+        </div>
+
+        <form id="studentForm" novalidate>
+          
+          <!-- Quick Selection from official roster of 30 students -->
+          <div class="form-group">
+            <label for="rosterSelect">
+              <span>اختر اسمك من القائمة الرسمية للدفعة :</span>
+              <span class="badge-hint">30 طالباً</span>
+            </label>
+            <select id="rosterSelect" class="form-select">
+              <option value="">-- اضغط لاختيار اسمك مباشرة --</option>
+            </select>
+            <span class="field-help">اختيار اسمك من القائمة يملأ اللقب والاسم تلقائياً وبدقة.</span>
+          </div>
+
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="nom">اللقب (Nom) <span class="required">*</span></label>
+              <input type="text" id="nom" name="nom" placeholder="Ex: Ziouane" required>
+              <span class="field-error" id="nomError"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="prenom">الاسم (Prénom) <span class="required">*</span></label>
+              <input type="text" id="prenom" name="prenom" placeholder="Ex: Fethi" required>
+              <span class="field-error" id="prenomError"></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="moyenne">
+              <span>المعدل العام (Moyenne sur 20) <span class="required">*</span></span>
+              <span class="secret-tag">🔒 سرّي لا يظهر للطلبة</span>
+            </label>
+            <input type="number" id="moyenne" name="moyenne" step="0.01" min="0" max="20" placeholder="مثال: 14.75 أو 15.20" required>
+            <span class="field-help">من 0.00 إلى 20.00 (الفاصلة العشرية مقبولة بدقة).</span>
+            <span class="field-error" id="moyenneError"></span>
+          </div>
+
+          <button type="submit" id="btnSubmit" class="btn btn-primary btn-block">
+            <span class="btn-text">تسجيل واحتساب ترتيبي 🚀</span>
+            <span class="btn-spinner" style="display:none;">⏳</span>
+          </button>
+        </form>
+
+        <!-- Alert Notification -->
+        <div id="formAlert" class="alert" style="display:none;"></div>
+      </section>
+
+      <!-- Left Column: Live Ranking Table -->
+      <section class="card ranking-card">
+        <div class="card-header ranking-header">
+          <div>
+            <h2 class="card-title">🏆 جدول الترتيب العام (Classement)</h2>
+            <p class="card-subtitle">مُرتّب تلقائياً من أعلى معدل إلى أدنى معدل (بدون إظهار المعدلات)</p>
+          </div>
+          <button id="btnRefresh" class="btn-refresh" title="تحديث يدوي">
+            🔄 تحديث
+          </button>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="ابحث عن اسمك أو زميلك (مثال: Fethi أو Bourzak)...">
+          <button id="btnClearSearch" class="btn-clear-search" style="display:none;" title="إلغاء البحث">✕</button>
+        </div>
+
+        <!-- Search Results Notification -->
+        <div id="searchResultsInfo" class="search-results-info" style="display:none;"></div>
+
+        <!-- Ranking Table -->
+        <div class="table-responsive">
+          <table class="ranking-table">
+            <thead>
+              <tr>
+                <th class="col-rank">الرتبة (Rang)</th>
+                <th class="col-student">الاسم واللقب (Nom & Prénom)</th>
+              </tr>
+            </thead>
+            <tbody id="rankingTableBody">
+              <tr>
+                <td colspan="2" class="loading-state">
+                  جاري تحميل الترتيب...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Explanation Footer -->
+        <div class="ranking-rule-note">
+          <span class="rule-icon">💡</span>
+          <div>
+            <strong>طريقة الترتيب:</strong> تنازلياً من أعلى معدل إلى أدنى معدل. في حال تساوي طالبين في نفس المعدل (Ex æquo)، يحصلان على نفس الرتبة.
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+
+    <!-- Additional Note about PFE Topics -->
+    <section class="card pfe-topics-card">
+      <div class="pfe-topics-header">
+        <span class="pfe-topics-icon">💡</span>
+        <div>
+          <h3 class="pfe-topics-title">ملاحظة ومبادرة إضافية حول مواضيع الـ PFE</h3>
+          <p class="pfe-topics-subtitle">خطوة استباقية للتحضير المبكر لمشاريع نهاية الدراسة</p>
+        </div>
+      </div>
+      <div class="pfe-topics-body">
+        <p class="pfe-topics-text">
+          كما نأمل، إن وفقنا الله، أن نتواصل مع أكبر عدد ممكن من الأساتذة لمعرفة المواضيع التي من المحتمل أن يقترحوها لمشاريع نهاية الدراسة.
+        </p>
+        <p class="pfe-topics-text">
+          وفي حال تمكنا من الحصول على هذه المواضيع بشكل مسبق، يمكننا الاطلاع عليها ومناقشتها فيما بيننا واختيار المواضيع التي تهمنا والعمل على التحضير لها مبكرًا، وذلك قبل الإعلان الرسمي عنها من طرف المدرسة.
+        </p>
+        <div class="pfe-topics-target">
+          🎯 <strong>الهدف من ذلك :</strong> أن نكون مستعدين بشكل أفضل، وأن نبدأ التفكير والتحضير للمشروع في وقت مبكر بدل الانتظار إلى غاية الإعلان الرسمي عن المواضيع.
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Admin Login Modal -->
+  <div id="adminLoginModal" class="modal-backdrop" style="display:none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">🔐 تسجيل دخول المشرف (Admin)</h3>
+        <button class="btn-close-modal" id="btnCloseLoginModal">✕</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-desc">
+          لوحة الإدارة مخصصة لمسؤول الدفعة للاطلاع على المعدلات، التعديل، الحذف، واستخراج الترتيب النهائي.
+        </p>
+        <form id="adminLoginForm">
+          <div class="form-group">
+            <label for="adminPassword">كلمة المرور (Mot de passe)</label>
+            <input type="password" id="adminPassword" placeholder="أدخل كلمة مرور الإدارة..." required autocomplete="current-password">
+            <span class="field-error" id="adminLoginError"></span>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn btn-secondary" id="btnCancelLogin">إلغاء</button>
+            <button type="submit" class="btn btn-primary" id="btnLoginSubmit">دخول</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Dashboard Modal -->
+  <div id="adminDashboardModal" class="modal-backdrop" style="display:none;">
+    <div class="modal-card modal-large">
+      <div class="modal-header">
+        <div>
+          <h3 class="modal-title">⚙️ لوحة إدارة الترتيب (Espace Admin)</h3>
+          <p class="modal-subtitle">عرض كامل يتضمن المعدلات الحقيقية مع إمكانية التعديل والحذف</p>
+        </div>
+        <div class="modal-header-actions">
+          <button id="btnExportCSV" class="btn btn-success btn-sm">📥 تصدير ملف Excel / CSV</button>
+          <button id="btnClearAll" class="btn btn-danger-outline btn-sm">🗑️ تفريغ القائمة</button>
+          <button id="btnAdminLogout" class="btn btn-secondary btn-sm">خروج</button>
+          <button class="btn-close-modal" id="btnCloseAdminModal">✕</button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div id="adminAlert" class="alert" style="display:none;"></div>
+        <div class="table-responsive admin-table-container">
+          <table class="ranking-table admin-table">
+            <thead>
+              <tr>
+                <th>الرتبة</th>
+                <th>اللقب (Nom)</th>
+                <th>الاسم (Prénom)</th>
+                <th class="col-moyenne">المعدل (Moyenne)</th>
+                <th class="col-actions">إجراءات</th>
+              </tr>
+            </thead>
+            <tbody id="adminTableBody">
+              <!-- Admin rows -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Edit Student Modal -->
+  <div id="adminEditModal" class="modal-backdrop" style="display:none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">✏️ تعديل بيانات الطالب</h3>
+        <button class="btn-close-modal" id="btnCloseEditModal">✕</button>
+      </div>
+      <div class="modal-body">
+        <form id="adminEditForm">
+          <input type="hidden" id="editStudentId">
+          <div class="form-group">
+            <label for="editNom">اللقب</label>
+            <input type="text" id="editNom" required>
+          </div>
+          <div class="form-group">
+            <label for="editPrenom">الاسم</label>
+            <input type="text" id="editPrenom" required>
+          </div>
+          <div class="form-group">
+            <label for="editMoyenne">المعدل (من 0 إلى 20)</label>
+            <input type="number" id="editMoyenne" step="0.01" min="0" max="20" required>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn btn-secondary" id="btnCancelEdit">إلغاء</button>
+            <button type="submit" class="btn btn-primary">حفظ التعديلات</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast"></div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p>
+      المدرسة العليا في الهندسة الكهربائية والطاقوية – وهران (ESG2E ORAN)<br>
+      تخصص هندسة التحكم الآلي (Automatique) • مبادرة طلابية لتنظيم اختيار مواضيع الـ PFE &copy; 2025/2026
+    </p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
