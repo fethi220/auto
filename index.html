@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="nav-actions">
-        <div class="badge-roster" id="rosterBadge" title="نسبة تسجيل طلبة الفوج">
+        <div class="badge-roster" id="rosterBadge" title="نسبة تسجيل طلبة الدفعة">
           <span class="pulse-dot"></span>
           <span id="studentCountBadge">0 / 30 طالباً مسجلاً</span>
         </div>
@@ -55,10 +55,10 @@
       <div class="intro-message-box">
         <p class="intro-paragraph">
           <strong>طلبتنا وأصدقاءنا الأعزاء،</strong><br>
-          نعلم أن من بين المشاكل التي تواجه الطلبة قبل اختيار مواضيع مشاريع نهاية الدراسة (PFE) هي عدم معرفة ترتيب كل طالب، وهذا الأمر قد يسبب بعض القلق والحيرة، خاصة وأن اختيار المواضيع يتم حسب الترتيب.
+          نعلم أن من بين المشاكل التي تواجه الطلبة قبل اختيار مواضيع مشاريع نهاية الدراسة (PFE) هي عدم معرفة ترتيب كل طالب أو فريق، وهذا الأمر قد يسبب بعض القلق والحيرة، خاصة وأن اختيار المواضيع يتم حسب الترتيب.
         </p>
         <p class="intro-paragraph">
-          لهذا قمنا بإنشاء هذا الموقع لمساعدتكم على معرفة ترتيبكم بسهولة وشفافية، وذلك من خلال إدخال معلوماتكم والمساهمة في إنشاء ترتيب موحد للمجموعة.
+          لهذا قمنا بإنشاء هذا الموقع لمساعدتكم على معرفة ترتيبكم بسهولة وشفافية، سواء كنتم تعملون بشكل فردي (<strong>Monôme</strong>) أو في ثنائي (<strong>Binôme</strong>).
         </p>
         <p class="intro-highlight">
           ✨ الهدف من هذا الموقع هو فقط تسهيل معرفة الترتيب وتجنب القلق أو التخمين قبل مرحلة اختيار مواضيع الـ PFE.
@@ -72,10 +72,10 @@
           <h3 class="privacy-title">ملاحظة مهمة ومطمئنة حول الخصوصية</h3>
         </div>
         <p class="privacy-text">
-          اطمئن، <strong>لن يستطيع أي طالب الاطلاع على معدلك</strong>. المعدل الذي تدخله يُستخدم فقط لحساب الترتيب، ولن يظهر أبداً في الجدول العام.
+          اطمئن، <strong>لن يستطيع أي طالب الاطلاع على معدلك الشخصي</strong>. في حالة الـ Binôme يدخل كل طالب معدله بنفسه وبسرية تامة، والمعدلات الفردية لا تظهر أبداً في الجدول العام لزملائك.
         </p>
         <p class="privacy-subtext">
-          المعدل محفوظ بشكل خاص ومحمٍ، ولا يمكن الاطلاع عليه إلا من طرف الـ <strong>Admin</strong> المسؤول عن الموقع.<br>
+          المعدلات محفوظة بشكل خاص ومحمٍ، ولا يمكن الاطلاع عليها إلا من طرف الـ <strong>Admin</strong> المسؤول عن الموقع.<br>
           هدفنا هو توفير ترتيب شفاف وعادل مع الحفاظ الكامل على خصوصية كل طالب.
         </p>
       </div>
@@ -84,13 +84,23 @@
     <!-- Main Content Grid -->
     <div class="content-grid">
       
-      <!-- Right Column: Registration Form -->
+      <!-- Right Column: Registration Form (Identical to original clean form) -->
       <section class="card form-card">
         <div class="card-header">
           <div class="card-header-icon">📝</div>
           <div>
             <h2 class="card-title">إدخال المعلومات وحساب الرتبة</h2>
             <p class="card-subtitle">خاص بطلبة السنة الثالثة تخصص Automatique</p>
+          </div>
+        </div>
+
+        <!-- Special Banner if Student was already invited as partner -->
+        <div id="invitedPartnerBanner" class="invited-partner-banner" style="display:none;">
+          <span class="banner-icon">🤝</span>
+          <div class="banner-content">
+            <strong>مرحباً <span id="invitedStudentName"></span> !</strong><br>
+            لقد تم اختيارك كشريك في ثنائي (<strong>Binôme</strong>) من طرف زميلك: <span id="invitingPartnerName" class="partner-highlight"></span>.<br>
+            أدخل معدلك الشخصي فقط أدناه وسيتم ربط الفريق واحتساب ترتيبكما المشترك تلقائياً وبسرية تامة.
           </div>
         </div>
 
@@ -133,7 +143,7 @@
           </div>
 
           <button type="submit" id="btnSubmit" class="btn btn-primary btn-block">
-            <span class="btn-text">تسجيل واحتساب ترتيبي 🚀</span>
+            <span class="btn-text">تسجيل واحتساب الترتيب 🚀</span>
             <span class="btn-spinner" style="display:none;">⏳</span>
           </button>
         </form>
@@ -147,7 +157,7 @@
         <div class="card-header ranking-header">
           <div>
             <h2 class="card-title">🏆 جدول الترتيب العام (Classement)</h2>
-            <p class="card-subtitle">مُرتّب تلقائياً من أعلى معدل إلى أدنى معدل (بدون إظهار المعدلات)</p>
+            <p class="card-subtitle">مُرتّب تلقائياً من أعلى معدل إلى أدنى معدل (المعدلات مخفية تماماً)</p>
           </div>
           <button id="btnRefresh" class="btn-refresh" title="تحديث يدوي">
             🔄 تحديث
@@ -169,13 +179,14 @@
           <table class="ranking-table">
             <thead>
               <tr>
-                <th class="col-rank">الرتبة (Rang)</th>
-                <th class="col-student">الاسم واللقب (Nom & Prénom)</th>
+                <th class="col-rank">الرتبة</th>
+                <th class="col-type">النوع</th>
+                <th class="col-student">الاسم واللقب / الفريق (Étudiants)</th>
               </tr>
             </thead>
             <tbody id="rankingTableBody">
               <tr>
-                <td colspan="2" class="loading-state">
+                <td colspan="3" class="loading-state">
                   جاري تحميل الترتيب...
                 </td>
               </tr>
@@ -187,7 +198,7 @@
         <div class="ranking-rule-note">
           <span class="rule-icon">💡</span>
           <div>
-            <strong>طريقة الترتيب:</strong> تنازلياً من أعلى معدل إلى أدنى معدل. في حال تساوي طالبين في نفس المعدل (Ex æquo)، يحصلان على نفس الرتبة.
+            <strong>طريقة الترتيب:</strong> تنازلياً حسب المعدل (للطالب الفردي أو معدل الثنائي). في حال التساوي (Ex æquo) يحصلان على نفس الرتبة.
           </div>
         </div>
 
@@ -218,6 +229,63 @@
     </section>
 
   </main>
+
+  <!-- Partner Selection Modal (Window that opens upon clicking submit) -->
+  <div id="partnerChoiceModal" class="modal-backdrop" style="display:none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 class="modal-title">🤝 نوع المشروع (Monôme أو Binôme)</h3>
+        <button class="btn-close-modal" id="btnClosePartnerModal">✕</button>
+      </div>
+      <div class="modal-body">
+        
+        <div id="decisionStepBox">
+          <p class="modal-desc">
+            مرحباً <strong><span id="modalStudentName"></span></strong> !<br>
+            هل تود احتساب ترتيبك بمفردك (<strong>Monôme</strong>) أم في ثنائي (<strong>Binôme</strong>) مع زميل لك في الدفعة ؟
+          </p>
+
+          <div class="partner-decision-grid">
+            <button type="button" class="btn-decision btn-decision-monome" id="btnChooseMonome">
+              <span class="decision-icon">👤</span>
+              <strong class="decision-title">أعمل بمفردي (Monôme)</strong>
+              <small class="decision-subtitle">احتساب الرتبة بمعدلي الشخصي فقط</small>
+            </button>
+
+            <button type="button" class="btn-decision btn-decision-binome" id="btnChooseBinome">
+              <span class="decision-icon">👥</span>
+              <strong class="decision-title">لدي شريك (Binôme)</strong>
+              <small class="decision-subtitle">اختيار زميل دون الحاجة لمعرفة معدله</small>
+            </button>
+          </div>
+        </div>
+
+        <!-- Binôme Selection Section -->
+        <div id="binomeSelectionBox" style="display:none;">
+          <p class="modal-desc">
+            اختر شريكك من قائمة طلبة الدفعة المتبقين :
+          </p>
+
+          <div class="form-group">
+            <label for="partnerSelect">اسم الزميل (Mon Binôme) :</label>
+            <select id="partnerSelect" class="form-select">
+              <option value="">-- اضغط لاختيار الشريك --</option>
+            </select>
+            <span class="field-help">
+              🔒 <strong>اطمئن :</strong> لن تحتاج لإدخال معدل زميلك. عند دخوله للموقع سيظهر له أنكما في فريق واحد وسيدخل معدله بنفسه وبسرية تامة.
+            </span>
+            <span class="field-error" id="partnerSelectError"></span>
+          </div>
+
+          <div class="modal-actions">
+            <button type="button" class="btn btn-secondary" id="btnBackToDecision">رجوع</button>
+            <button type="button" class="btn btn-primary" id="btnConfirmBinome">تأكيد الشراكة وحساب الترتيب 🚀</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 
   <!-- Admin Login Modal -->
   <div id="adminLoginModal" class="modal-backdrop" style="display:none;">
@@ -251,7 +319,7 @@
       <div class="modal-header">
         <div>
           <h3 class="modal-title">⚙️ لوحة إدارة الترتيب (Espace Admin)</h3>
-          <p class="modal-subtitle">عرض كامل يتضمن المعدلات الحقيقية مع إمكانية التعديل والحذف</p>
+          <p class="modal-subtitle">عرض كامل يتضمن المعدلات الحقيقية وحالة الـ Binômes</p>
         </div>
         <div class="modal-header-actions">
           <button id="btnExportCSV" class="btn btn-success btn-sm">📥 تصدير ملف Excel / CSV</button>
@@ -267,9 +335,10 @@
             <thead>
               <tr>
                 <th>الرتبة</th>
-                <th>اللقب (Nom)</th>
-                <th>الاسم (Prénom)</th>
-                <th class="col-moyenne">المعدل (Moyenne)</th>
+                <th>النوع</th>
+                <th>الطالب 1 (المعدل)</th>
+                <th>الطالب 2 (المعدل)</th>
+                <th class="col-moyenne">المعدل النهائي</th>
                 <th class="col-actions">إجراءات</th>
               </tr>
             </thead>
@@ -286,24 +355,55 @@
   <div id="adminEditModal" class="modal-backdrop" style="display:none;">
     <div class="modal-card">
       <div class="modal-header">
-        <h3 class="modal-title">✏️ تعديل بيانات الطالب</h3>
+        <h3 class="modal-title">✏️ تعديل بيانات التسجيل</h3>
         <button class="btn-close-modal" id="btnCloseEditModal">✕</button>
       </div>
       <div class="modal-body">
         <form id="adminEditForm">
-          <input type="hidden" id="editStudentId">
+          <input type="hidden" id="editGroupId">
+          
           <div class="form-group">
-            <label for="editNom">اللقب</label>
-            <input type="text" id="editNom" required>
+            <label for="editType">النوع :</label>
+            <select id="editType" class="form-select">
+              <option value="monome">Monôme (فردي)</option>
+              <option value="binome">Binôme (ثنائي)</option>
+            </select>
+          </div>
+
+          <div class="section-badge">الطالب الأول</div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="editNom1">اللقب 1</label>
+              <input type="text" id="editNom1" required>
+            </div>
+            <div class="form-group">
+              <label for="editPrenom1">الاسم 1</label>
+              <input type="text" id="editPrenom1" required>
+            </div>
           </div>
           <div class="form-group">
-            <label for="editPrenom">الاسم</label>
-            <input type="text" id="editPrenom" required>
+            <label for="editMoyenne1">معدل الطالب 1</label>
+            <input type="number" id="editMoyenne1" step="0.01" min="0" max="20" required>
           </div>
-          <div class="form-group">
-            <label for="editMoyenne">المعدل (من 0 إلى 20)</label>
-            <input type="number" id="editMoyenne" step="0.01" min="0" max="20" required>
+
+          <div id="editBinomeFields" style="display:none;">
+            <div class="section-badge">الطالب الثاني (Binôme)</div>
+            <div class="form-row-2">
+              <div class="form-group">
+                <label for="editNom2">اللقب 2</label>
+                <input type="text" id="editNom2">
+              </div>
+              <div class="form-group">
+                <label for="editPrenom2">الاسم 2</label>
+                <input type="text" id="editPrenom2">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="editMoyenne2">معدل الطالب 2 (أو اتركه فارغاً إذا لم يسجل بعد)</label>
+              <input type="number" id="editMoyenne2" step="0.01" min="0" max="20">
+            </div>
           </div>
+
           <div class="modal-actions">
             <button type="button" class="btn btn-secondary" id="btnCancelEdit">إلغاء</button>
             <button type="submit" class="btn btn-primary">حفظ التعديلات</button>
